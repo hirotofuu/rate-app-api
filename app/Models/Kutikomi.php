@@ -16,6 +16,7 @@ class Kutikomi extends Model
         'test',
         'task',
         'field',
+        'comment',
         'evaluate',
         'rate',
         'jugyo_id',

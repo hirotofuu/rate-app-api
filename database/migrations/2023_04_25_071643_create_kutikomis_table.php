@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('text');
             $table->text('test');
             $table->text('task');
-            $table->text('evaluate');
+            $table->text('comment');
+            $table->string('evaluate');
             $table->integer('rate');
             $table->bigInteger('jugyo_id')->unsigned();
             $table->foreign('jugyo_id')->references('id')->on('jugyos')->onDelete('cascade');

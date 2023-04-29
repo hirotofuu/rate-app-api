@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/createJugyo', [JugyoController::class, 'createJugyo']);
 Route::delete('/deleteJugyo/{id}', [JugyoController::class, 'deleteJugyo']);
 Route::get('/fetchIndexJugyo', [JugyoController::class, 'fetchIndex']);
+Route::get('/showJugyo/{id}', [JugyoController::class, 'showJugyo']);
 Route::put('/jugyoEdit', [JugyoController::class, 'editJugyo']);
 
 Route::post('/createKutikomi', [KutikomiController::class, 'createKutikomoi']);

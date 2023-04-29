@@ -16,6 +16,7 @@ class KutikomiController extends Controller
                 'text' => $request->text,
                 'test'=> $request->test,
                 'task'=>$request->task,
+                'comment'=>$request->comment,
                 'evaluate'=>$request->evaluate,
                 'rate'=>$request->rate,
                 'jugyo_id'=>$request->jugyo_id,
@@ -40,11 +41,11 @@ class KutikomiController extends Controller
 
         public function showJugyoKutikomi($request){
             try{
-                $kutikomi=Kutikomi::orderBy('id', 'DESC')->where('id', $request)->take(200)->get();
+                $kutikomi=Kutikomi::find($request);
             }catch(Exception $e){
                 throw $e;
             }
-            return KutikomiResource::collection($kutikomi);
+            return new KutikomiResource($kutikomi);
         }
 
 }

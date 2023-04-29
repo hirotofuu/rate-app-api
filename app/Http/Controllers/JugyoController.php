@@ -26,6 +26,11 @@ class JugyoController extends Controller
             $Jugyo->delete();
         }
 
+        public function showJugyo($request){
+            $syosai=Jugyo::find($request);
+            return new JugyoResource($syosai);
+        }
+
 
         public function fetchIndex(){
             try{
