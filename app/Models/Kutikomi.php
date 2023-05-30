@@ -12,6 +12,8 @@ class Kutikomi extends Model
 
     protected $fillable = [
         'attend',
+        'type',
+        'day',
         'text',
         'test',
         'task',

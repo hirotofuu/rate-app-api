@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('kutikomis', function (Blueprint $table) {
             $table->id();
             $table->string('attend');
+            $table->string('type');
+            $table->string('day');
             $table->string('text');
-            $table->text('test');
-            $table->text('task');
+            $table->text('test')->nullable();
+            $table->text('task')->nullable();
             $table->text('comment');
             $table->string('evaluate');
             $table->integer('rate');

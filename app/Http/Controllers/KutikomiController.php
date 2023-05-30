@@ -13,6 +13,8 @@ class KutikomiController extends Controller
         $kutikomi=new Kutikomi();
         $mdoel=$kutikomi->create([
                 'attend' => $request->attend,
+                'type' => $request->type,
+                'day' => $request->day,
                 'text' => $request->text,
                 'test'=> $request->test,
                 'task'=>$request->task,

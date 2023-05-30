@@ -13,7 +13,7 @@ class FetchKutikomiTest extends TestCase
      */
     public function test_example(): void
     {
-        $this->json('GET', 'api/showJugyo/1', ['Accept' => 'application/json'])
+        $this->json('GET', 'api/filterJugyo/三田/大体全部/道徳/山元', ['Accept' => 'application/json'])
             ->assertStatus(200);
     }
 }
