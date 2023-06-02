@@ -25,6 +25,8 @@ Route::delete('/deleteJugyo/{id}', [JugyoController::class, 'deleteJugyo']);
 Route::get('/fetchIndexJugyo', [JugyoController::class, 'fetchIndex']);
 Route::get('/showJugyo/{id}', [JugyoController::class, 'showJugyo']);
 Route::get('/filterJugyo/{faculty}/{campus}/{class_name}/{teacher_name}', [JugyoController::class, 'filterJugyo']);
+Route::get('/isExistJugyo/{class_name}/{teacher_name}', [JugyoController::class, 'isExistJugyo']);
+Route::get('/isExistJugyoToJugyo/{class_name}/{teacher_name}', [JugyoController::class, 'isExistJugyoToJugyo']);
 Route::put('/jugyoEdit', [JugyoController::class, 'editJugyo']);
 
 Route::post('/createKutikomi', [KutikomiController::class, 'createKutikomoi']);

@@ -14,7 +14,7 @@ class JugyoCreateTest extends TestCase
     public function test_example()
     {
         $userData = [
-            "class_name" => "英語セミナー",
+            "class_name" => "英ミナー",
             "teacher_name" => "やまもとひろと",
             "faculty" => "経済学部",
             "campus" => "三田",

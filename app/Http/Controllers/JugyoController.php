@@ -9,17 +9,47 @@ use App\Http\Resources\JugyoResource;
 class JugyoController extends Controller
 {
     public function createJugyo(Request $request){
-        $jugyo=new Jugyo();
-        $model=$jugyo->create([
-                'class_name' => $request->class_name,
-                'teacher_name' => $request->teacher_name,
-                'campus'=> $request->campus,
-                'faculty'=>$request->faculty,
-                'field'=>$request->field,
-                'url'=>$request->url,
-                'content'=>$request->content,
+        $firstjugyo=Jugyo::where('class_name', $request->class_name)->where('teacher_name',$request->teacher_name)->first();
+        if($firstjugyo){
+        }else{
+            $jugyo=new Jugyo();
+            $model=$jugyo->create([
+                    'class_name' => $request->class_name,
+                    'teacher_name' => $request->teacher_name,
+                    'campus'=> $request->campus,
+                    'faculty'=>$request->faculty,
+                    'field'=>$request->field,
+                    'url'=>$request->url,
+                    'content'=>$request->content,
+                ]);
+            }
+    }
+
+    public function isExistJugyo(Request $request){
+        $firstjugyo=Jugyo::where('class_name', $request->class_name)->where('teacher_name', $request->teacher_name)->first();
+        if($firstjugyo){
+            return response()->json([
+                'redirect_url' => "/create/kutikomi/{$firstjugyo->class_name}/{$firstjugyo->teacher_name}/{$firstjugyo->id}"
+            ]);
+        }else{
+            return response()->json([
+                'redirect_url' => null
             ]);
         }
+    }
+
+    public function isExistJugyoToJugyo(Request $request){
+        $firstjugyo=Jugyo::where('class_name', $request->class_name)->where('teacher_name', $request->teacher_name)->first();
+        if($firstjugyo){
+            return response()->json([
+                'redirect_url' => "/class/{$firstjugyo->id}"
+            ]);
+        }else{
+            return response()->json([
+                'redirect_url' => null
+            ]);
+        }
+    }
 
         public function deleteJugyo($request){
             $Jugyo=Jugyo::where('id', $request)->first();
@@ -66,7 +96,6 @@ class JugyoController extends Controller
             }
 
         public function editJugyo (Request $request){
-
             Jugyo::where('id', $request->id)
             ->update([
                 'campus'=>$request->campus,
