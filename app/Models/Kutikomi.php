@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Model\Jugyo;
+use App\Models\Jugyo;
+use App\Models\Comment;
 
 class Kutikomi extends Model
 {
@@ -24,8 +25,13 @@ class Kutikomi extends Model
         'jugyo_id',
     ];
 
-    public function comments()
+    public function jugyo()
     {
         return $this->belongsTo(Jugyo::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class KutikomiResource extends JsonResource
+class ReplyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,9 @@ class KutikomiResource extends JsonResource
     {
         return [
             'id'=>$this->id,
+            'name'=>$this->name,
             'day'=>$this->day,
-            'comment'=>$this->comment,
-            'evaluate'=>$this->evaluate,
-            'rate'=>$this->rate,
+            'reply'=>$this->reply,
         ];
     }
 }

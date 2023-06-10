@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JugyoController;
 use App\Http\Controllers\KutikomiController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,11 @@ Route::get('/filterJugyo/{faculty}/{campus}/{class_name}/{teacher_name}', [Jugyo
 Route::get('/isExistJugyo/{class_name}/{teacher_name}', [JugyoController::class, 'isExistJugyo']);
 Route::get('/isExistJugyoToJugyo/{class_name}/{teacher_name}', [JugyoController::class, 'isExistJugyoToJugyo']);
 Route::put('/jugyoEdit', [JugyoController::class, 'editJugyo']);
+
+Route::post('/createComment', [CommentController::class, 'createComment']);
+Route::get('/fetchComment/{id}', [CommentController::class, 'fetchComment']);
+Route::post('/createReply', [CommentController::class, 'createReply']);
+
 
 Route::post('/createKutikomi', [KutikomiController::class, 'createKutikomoi']);
 Route::delete('/deleteKutikomi/{id}', [JugyoController::class, 'deleteKutikomi']);

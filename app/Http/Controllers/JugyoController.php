@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Jugyo;
 use App\Http\Resources\JugyoResource;
-
+use App\Http\Resources\JugyoStarResource;
+use App\Http\Requests\CreateJugyoRequest;
 class JugyoController extends Controller
 {
-    public function createJugyo(Request $request){
+    public function createJugyo(CreateJugyoRequest $request){
         $firstjugyo=Jugyo::where('class_name', $request->class_name)->where('teacher_name',$request->teacher_name)->first();
         if($firstjugyo){
         }else{
@@ -76,18 +77,18 @@ class JugyoController extends Controller
             if($request->teacher_name!="all"){
             $query->where('teacher_name', 'LIKE',"%{$request->teacher_name}%");
             }
-            $res=$query->get();
-            return JugyoResource::collection($res);
+            $res=$query->with('kutikomis')->get();
+            return JugyoStarResource::collection($res);
         }
 
 
         public function fetchIndex(){
             try{
-                $article=Jugyo::orderBy('id', 'DESC')->take(200)->get();
+                $article=Jugyo::with('kutikomis')->orderBy('id', 'DESC')->take(200)->get();
             }catch(Exception $e){
                 throw $e;
             }
-            return JugyoResource::collection($article);
+            return JugyoStarResource::collection($article);
         }
 
         public function Jugyo(Request $request){
@@ -95,7 +96,7 @@ class JugyoController extends Controller
 
             }
 
-        public function editJugyo (Request $request){
+        public function editJugyo (CreateJugyoRequest $request){
             Jugyo::where('id', $request->id)
             ->update([
                 'campus'=>$request->campus,

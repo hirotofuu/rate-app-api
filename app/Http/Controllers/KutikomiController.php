@@ -6,10 +6,11 @@ use Exception;
 use App\Models\Kutikomi;
 use Illuminate\Http\Request;
 use App\Http\Resources\KutikomiResource;
-
+use App\Http\Resources\ShowKutikomiResource;
+use App\Http\Requests\KutikomiRequest;
 class KutikomiController extends Controller
 {
-    public function createKutikomoi(Request $request){
+    public function createKutikomoi(KutikomiRequest $request){
         $kutikomi=new Kutikomi();
         $mdoel=$kutikomi->create([
                 'attend' => $request->attend,
@@ -47,7 +48,7 @@ class KutikomiController extends Controller
             }catch(Exception $e){
                 throw $e;
             }
-            return new KutikomiResource($kutikomi);
+            return new ShowKutikomiResource($kutikomi);
         }
 
 }

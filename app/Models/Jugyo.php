@@ -21,7 +21,7 @@ class Jugyo extends Model
         'content',
     ];
 
-    public function comments()
+    public function kutikomis()
     {
         return $this->hasMany(Kutikomi::class);
     }

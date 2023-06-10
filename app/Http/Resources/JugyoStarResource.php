@@ -4,8 +4,8 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-
-class KutikomiResource extends JsonResource
+use App\Http\Resources\StarsResource;
+class JugyoStarResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,11 @@ class KutikomiResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'day'=>$this->day,
-            'comment'=>$this->comment,
-            'evaluate'=>$this->evaluate,
-            'rate'=>$this->rate,
+            'class_name'=>$this->class_name,
+            'teacher_name'=>$this->teacher_name,
+            'campus'=>$this->campus,
+            'faculty'=>$this->faculty,
+            'stars'=>StarsResource::collection($this->kutikomis),
         ];
     }
 }
