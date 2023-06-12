@@ -28,7 +28,7 @@ class KutikomiController extends Controller
 
         public function deleteKutikomi($request){
             $kutikomi=Kutikomi::where('id', $request)->first();
-            $Jugyo->delete();
+            $kutikomi->delete();
         }
 
 
@@ -50,5 +50,6 @@ class KutikomiController extends Controller
             }
             return new ShowKutikomiResource($kutikomi);
         }
+
 
 }

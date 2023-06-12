@@ -16,6 +16,7 @@ class CommentResource extends JsonResource
     {
         return [
             'id'=>$this->id,
+            'uid'=>$this->uid,
             'name'=>$this->name,
             'day'=>$this->day,
             'comment'=>$this->comment,

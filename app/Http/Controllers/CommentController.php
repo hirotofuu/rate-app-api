@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Reply;
+use Illuminate\Support\Str;
 use App\Http\Resources\CommentResource;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ReplyRequest;
@@ -19,6 +20,16 @@ class CommentController extends Controller
                     'kutikomi_id'=>$request->kutikomi_id,
                 ]);
             return $model->id;
+    }
+
+    public function deleteComment($request){
+        $Comment=Comment::where('id', $request)->first();
+        $Comment->delete();
+    }
+
+    public function deleteReply($request){
+        $Reply=Reply::where('id', $request)->first();
+        $Reply->delete();
     }
 
     public function fetchComment($request){

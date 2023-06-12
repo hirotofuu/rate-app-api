@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JugyoController;
 use App\Http\Controllers\KutikomiController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/Login', [LoginController::class, 'login']);
+Route::post('/Register', [LoginController::class, 'register']);
+
 Route::post('/createJugyo', [JugyoController::class, 'createJugyo']);
-Route::delete('/deleteJugyo/{id}', [JugyoController::class, 'deleteJugyo']);
 Route::get('/fetchIndexJugyo', [JugyoController::class, 'fetchIndex']);
 Route::get('/showJugyo/{id}', [JugyoController::class, 'showJugyo']);
 Route::get('/filterJugyo/{faculty}/{campus}/{class_name}/{teacher_name}', [JugyoController::class, 'filterJugyo']);
@@ -40,3 +43,9 @@ Route::delete('/deleteKutikomi/{id}', [JugyoController::class, 'deleteKutikomi']
 Route::get('/getKutikomi/{jugyo_id}', [KutikomiController::class, 'fetchJugyoKutikomi']);
 Route::get('/showKutikomi/{id}', [KutikomiController::class, 'showJugyoKutikomi']);
 
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::delete('/deleteJugyo/{id}', [JugyoController::class, 'deleteJugyo']);
+    Route::delete('/deleteKutikomi/{id}', [KutikomiController::class, 'deleteKutikomi']);
+    Route::delete('/deleteComment/{id}', [CommentController::class, 'deleteComment']);
+    Route::delete('/deleteReply/{id}', [CommentController::class, 'deleteReply']);
+});
