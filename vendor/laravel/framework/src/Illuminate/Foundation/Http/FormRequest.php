@@ -11,7 +11,6 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Validation\ValidatesWhenResolvedTrait;
-use Illuminate\Validation\ValidationException;
 
 class FormRequest extends Request implements ValidatesWhenResolved
 {
@@ -116,7 +115,7 @@ class FormRequest extends Request implements ValidatesWhenResolved
      */
     protected function createDefaultValidator(ValidationFactory $factory)
     {
-        $rules = $this->container->call([$this, 'rules']);
+        $rules = method_exists($this, 'rules') ? $this->container->call([$this, 'rules']) : [];
 
         $validator = $factory->make(
             $this->validationData(), $rules,
@@ -152,7 +151,9 @@ class FormRequest extends Request implements ValidatesWhenResolved
      */
     protected function failedValidation(Validator $validator)
     {
-        throw (new ValidationException($validator))
+        $exception = $validator->getException();
+
+        throw (new $exception($validator))
                     ->errorBag($this->errorBag)
                     ->redirectTo($this->getRedirectUrl());
     }
