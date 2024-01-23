@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+// validation Kutikomi
+
 class KutikomiRequest extends FormRequest
 {
     /**
