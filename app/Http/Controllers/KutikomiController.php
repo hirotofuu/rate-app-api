@@ -10,6 +10,7 @@ use App\Http\Resources\ShowKutikomiResource;
 use App\Http\Requests\KutikomiRequest;
 class KutikomiController extends Controller
 {
+    // 口コミ作成
     public function createKutikomoi(KutikomiRequest $request){
         $kutikomi=new Kutikomi();
         $mdoel=$kutikomi->create([
@@ -26,12 +27,13 @@ class KutikomiController extends Controller
             ]);
         }
 
+        // 口コミ削除
         public function deleteKutikomi($request){
             $kutikomi=Kutikomi::where('id', $request)->first();
             $kutikomi->delete();
         }
 
-
+        // 授業ごとに口コミfetch
         public function fetchJugyoKutikomi($request){
             try{
                 $kutikomi=Kutikomi::orderBy('id', 'DESC')->where('jugyo_id', $request)->take(200)->get();
@@ -42,6 +44,7 @@ class KutikomiController extends Controller
         }
 
 
+        // 一つ口コミfetch
         public function showJugyoKutikomi($request){
             try{
                 $kutikomi=Kutikomi::find($request);

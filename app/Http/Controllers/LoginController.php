@@ -12,6 +12,7 @@ use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
+    // 管理人ログイン
     public function login(Request $request)
     {
 
@@ -23,6 +24,8 @@ class LoginController extends Controller
         ]);
 
     }
+
+    // 管理人登録
     public function register(Request $request)
     {
         User::create([

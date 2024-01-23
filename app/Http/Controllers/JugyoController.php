@@ -9,6 +9,7 @@ use App\Http\Resources\JugyoStarResource;
 use App\Http\Requests\CreateJugyoRequest;
 class JugyoController extends Controller
 {
+    // 授業作成
     public function createJugyo(CreateJugyoRequest $request){
         $firstjugyo=Jugyo::where('class_name', $request->class_name)->where('teacher_name',$request->teacher_name)->first();
         if($firstjugyo){
@@ -26,6 +27,7 @@ class JugyoController extends Controller
             }
     }
 
+    // 渡された名前の授業が存在しているか確認
     public function isExistJugyo(Request $request){
         $firstjugyo=Jugyo::where('class_name', $request->class_name)->where('teacher_name', $request->teacher_name)->first();
         if($firstjugyo){
@@ -39,6 +41,7 @@ class JugyoController extends Controller
         }
     }
 
+    // 渡された名前の授業が存在しているか確認->あった場合、授業のurlわたす
     public function isExistJugyoToJugyo(Request $request){
         $firstjugyo=Jugyo::where('class_name', $request->class_name)->where('teacher_name', $request->teacher_name)->first();
         if($firstjugyo){
@@ -52,17 +55,19 @@ class JugyoController extends Controller
         }
     }
 
+        // 授業削除
         public function deleteJugyo($request){
             $Jugyo=Jugyo::where('id', $request)->first();
             $Jugyo->delete();
         }
 
+        // 授業一つ
         public function showJugyo($request){
             $syosai=Jugyo::find($request);
             return new JugyoResource($syosai);
         }
 
-
+        // 検索フィルター
         public function filterJugyo(Request $request){
             $query=Jugyo::query();
             if($request->faculty!="all"){
@@ -82,6 +87,7 @@ class JugyoController extends Controller
         }
 
 
+        // 全部取得
         public function fetchIndex(){
             try{
                 $article=Jugyo::with('kutikomis')->orderBy('id', 'DESC')->take(200)->get();
@@ -91,11 +97,13 @@ class JugyoController extends Controller
             return JugyoStarResource::collection($article);
         }
 
+        // 検索
         public function Jugyo(Request $request){
             $jugyo=Jugyo::where('class_name', $request->class_name)->where('teacher_name', $request->teacher_name)->first();
 
             }
 
+        // 編集
         public function editJugyo (CreateJugyoRequest $request){
             Jugyo::where('id', $request->id)
             ->update([
