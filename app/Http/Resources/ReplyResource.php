@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-// json化関数（コメント返信）
+// json化関数（コメント返信）!
 
 class ReplyResource extends JsonResource
 {

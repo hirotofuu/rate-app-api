@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\CommentResource;
 
-// json化関数（口コミ詳細）
+// json化関数（口コミ詳細）!
 
 class ShowKutikomiResource extends JsonResource
 {

@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-// json化関数（star）
+// json化関数（star）!
 
 class StarsResource extends JsonResource
 {
