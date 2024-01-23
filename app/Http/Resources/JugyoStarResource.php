@@ -5,6 +5,9 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\StarsResource;
+
+// json化関数（授業２）
+
 class JugyoStarResource extends JsonResource
 {
     /**
